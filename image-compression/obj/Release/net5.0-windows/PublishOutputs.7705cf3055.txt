@@ -1,0 +1,6 @@
+C:\Users\Mustafa\Desktop\test\image-compression.exe
+C:\Users\Mustafa\Desktop\test\image-compression.dll
+C:\Users\Mustafa\Desktop\test\image-compression.deps.json
+C:\Users\Mustafa\Desktop\test\image-compression.runtimeconfig.json
+C:\Users\Mustafa\Desktop\test\image-compression.pdb
+C:\Users\Mustafa\Desktop\test\tr-TR\image-compression.resources.dll

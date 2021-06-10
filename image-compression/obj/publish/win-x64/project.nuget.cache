@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "juYq3A9mSecKoPM7CveC9r9CPd/74k78Medr6KkLN+vGK1Q/LyrAeG/o7PNyZfzhNAU8A4BNdzO+4z7Jf7WKMg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Mustafa\\source\\repos\\image-compression\\image-compression\\image-compression.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Mustafa\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\5.0.6\\microsoft.netcore.app.runtime.win-x64.5.0.6.nupkg.sha512",
+    "C:\\Users\\Mustafa\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\5.0.6\\microsoft.windowsdesktop.app.runtime.win-x64.5.0.6.nupkg.sha512",
+    "C:\\Users\\Mustafa\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\5.0.6\\microsoft.aspnetcore.app.runtime.win-x64.5.0.6.nupkg.sha512"
+  ],
+  "logs": []
+}
