@@ -22,7 +22,7 @@ namespace image_compression
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			
+
 
 			progressBar1.Visible = false;
 		}
@@ -43,7 +43,6 @@ namespace image_compression
 		private void button1_Click(object sender, EventArgs e)
 		{
 			OpenFolderDialog(textBox1);
-
 		}
 
 		private void button2_Click(object sender, EventArgs e)
@@ -53,6 +52,23 @@ namespace image_compression
 		}
 
 
+		public static double GetImageSize(string SoucePath)
+		{
+
+
+			string[] sizes = { "B", "KB", "MB", "GB", "TB" };
+			double len = new FileInfo(SoucePath).Length;
+			int order = 0;
+			while (len >= 1024 && order < sizes.Length - 1)
+			{
+				order++;
+				len = len / 1024;
+			}
+			//string result = String.Format("{0:0.##} {1}", len, sizes[order]);
+
+			return len;
+
+		}
 
 
 
@@ -60,23 +76,104 @@ namespace image_compression
 
 		public static void CompressImage(string SoucePath, string DestPath, int quality)
 		{
-			var FileName = Path.GetFileName(SoucePath);
-			DestPath = DestPath + "\\" + FileName;
 
-			using (Bitmap bmp1 = new Bitmap(SoucePath))
+
+			int dongu = 1;
+			double oldSize = GetImageSize(SoucePath);
+
+
+			if (oldSize > 125.0)
 			{
-				ImageCodecInfo jpgEncoder = GetEncoder(ImageFormat.Jpeg);
 
-				System.Drawing.Imaging.Encoder QualityEncoder = System.Drawing.Imaging.Encoder.Quality;
 
-				EncoderParameters myEncoderParameters = new EncoderParameters(1);
+				for (int i = 0; i < dongu; i++)
+				{
 
-				EncoderParameter myEncoderParameter = new EncoderParameter(QualityEncoder, quality);
+					if (i == 0)
+					{
+						var FileName = Path.GetFileName(SoucePath);
+						DestPath = DestPath + "\\" + FileName;
 
-				myEncoderParameters.Param[0] = myEncoderParameter;
-				bmp1.Save(DestPath, jpgEncoder, myEncoderParameters);
+
+						using (Bitmap bmp1 = new Bitmap(SoucePath))
+						{
+							ImageCodecInfo jpgEncoder = GetEncoder(ImageFormat.Jpeg);
+
+							System.Drawing.Imaging.Encoder QualityEncoder = System.Drawing.Imaging.Encoder.Quality;
+
+							EncoderParameters myEncoderParameters = new EncoderParameters(1);
+
+							EncoderParameter myEncoderParameter = new EncoderParameter(QualityEncoder, quality+(i*2));
+
+							myEncoderParameters.Param[0] = myEncoderParameter;
+							bmp1.Save(DestPath, jpgEncoder, myEncoderParameters);
+
+						}
+						dongu++;
+						oldSize = GetImageSize(DestPath);
+
+					}
+					else
+					{
+						
+
+						if (oldSize > 125.0) {
+
+							
+
+
+							using (Bitmap bmp1 = new Bitmap(DestPath))
+							{
+								ImageCodecInfo jpgEncoder = GetEncoder(ImageFormat.Jpeg);
+								System.Drawing.Imaging.Encoder QualityEncoder = System.Drawing.Imaging.Encoder.Quality;
+								EncoderParameters myEncoderParameters = new EncoderParameters(1);
+								EncoderParameter myEncoderParameter = new EncoderParameter(QualityEncoder, quality);
+								myEncoderParameters.Param[0] = myEncoderParameter;
+								bmp1.Save(DestPath + i.ToString(), jpgEncoder, myEncoderParameters);
+
+							}
+
+
+							try
+							{
+
+								File.Delete(DestPath);
+								string yol = DestPath + i.ToString();
+								FileInfo fi = new FileInfo(yol);
+								if (fi.Exists)
+								{
+									fi.MoveTo(yol.Substring(0, yol.Length - 1));
+								}
+
+
+
+							}
+							catch (Exception)
+							{
+
+								throw;
+							}
+
+
+							dongu++;
+							oldSize = GetImageSize(DestPath);
+						}
+
+
+
+
+
+					}
+
+
+
+
+				}
 
 			}
+
+
+
 		}
 
 		private static ImageCodecInfo GetEncoder(ImageFormat format)
@@ -101,65 +198,20 @@ namespace image_compression
 			foreach (var file in files)
 			{
 
-				string[] sizes = { "B", "KB", "MB", "GB", "TB" };
-				double len = new FileInfo(file).Length;
-				int order = 0;
-				while (len >= 1024 && order < sizes.Length - 1)
+
+
+				i++;
+				string ext = Path.GetExtension(file).ToUpper();
+				if (ext == ".PNG" || ext == ".JPG")
 				{
-					order++;
-					len = len / 1024;
-				}
-
-
-				string result = String.Format("{0:0.##} {1}", len, sizes[order]);
-
-				if(len < 500 && len > 125){
-					i++;
-					string ext = Path.GetExtension(file).ToUpper();
-					if (ext == ".PNG" || ext == ".JPG")
+					CompressImage(file, textBox2.Text, 60);
+					if (i < 95)
 					{
-						CompressImage(file, textBox2.Text, 15);
-						if (i < 95)
-						{
-							progressBar1.Value = i;
+						progressBar1.Value = i;
 
-						}
 					}
-
 				}
 
-				if (len < 1000 && len > 500)
-				{
-					i++;
-					string ext = Path.GetExtension(file).ToUpper();
-					if (ext == ".PNG" || ext == ".JPG")
-					{
-						CompressImage(file, textBox2.Text, 30);
-						if (i < 95)
-						{
-							progressBar1.Value = i;
-
-						}
-					}
-
-				}
-
-
-				if (len < 2000 && len > 1000)
-				{
-					i++;
-					string ext = Path.GetExtension(file).ToUpper();
-					if (ext == ".PNG" || ext == ".JPG")
-					{
-						CompressImage(file, textBox2.Text, 50);
-						if (i < 95)
-						{
-							progressBar1.Value = i;
-
-						}
-					}
-
-				}
 
 
 
