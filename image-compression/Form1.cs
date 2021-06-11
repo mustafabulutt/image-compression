@@ -22,11 +22,7 @@ namespace image_compression
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			for (int i = 10; i <= 100; i = i + 10)
-			{
-				comboBox1.Items.Add(i);
-			}
-			comboBox1.SelectedIndex = 0;
+			
 
 			progressBar1.Visible = false;
 		}
@@ -104,21 +100,74 @@ namespace image_compression
 			int i = 0;
 			foreach (var file in files)
 			{
-				i++;
-				string ext = Path.GetExtension(file).ToUpper();
-				if (ext == ".PNG" || ext == ".JPG"){ 
-					CompressImage(file, textBox2.Text, (int)comboBox1.SelectedItem);
-					if (i <95) {
-					progressBar1.Value = i;
 
-					}
+				string[] sizes = { "B", "KB", "MB", "GB", "TB" };
+				double len = new FileInfo(file).Length;
+				int order = 0;
+				while (len >= 1024 && order < sizes.Length - 1)
+				{
+					order++;
+					len = len / 1024;
 				}
+
+
+				string result = String.Format("{0:0.##} {1}", len, sizes[order]);
+
+				if(len < 500 && len > 125){
+					i++;
+					string ext = Path.GetExtension(file).ToUpper();
+					if (ext == ".PNG" || ext == ".JPG")
+					{
+						CompressImage(file, textBox2.Text, 15);
+						if (i < 95)
+						{
+							progressBar1.Value = i;
+
+						}
+					}
+
+				}
+
+				if (len < 1000 && len > 500)
+				{
+					i++;
+					string ext = Path.GetExtension(file).ToUpper();
+					if (ext == ".PNG" || ext == ".JPG")
+					{
+						CompressImage(file, textBox2.Text, 30);
+						if (i < 95)
+						{
+							progressBar1.Value = i;
+
+						}
+					}
+
+				}
+
+
+				if (len < 2000 && len > 1000)
+				{
+					i++;
+					string ext = Path.GetExtension(file).ToUpper();
+					if (ext == ".PNG" || ext == ".JPG")
+					{
+						CompressImage(file, textBox2.Text, 50);
+						if (i < 95)
+						{
+							progressBar1.Value = i;
+
+						}
+					}
+
+				}
+
+
 
 			}
 			progressBar1.Value = 100;
 
 
-			MessageBox.Show("Resimleri küçülttüm metin abi şu yola kayıt ettim bi bakarsın :D \n" + textBox2.Text);
+			MessageBox.Show("resimler şuraya hazırlandı \n" + textBox2.Text);
 			textBox2.Text = "";
 			textBox1.Text = "";
 			progressBar1.Value = 0;

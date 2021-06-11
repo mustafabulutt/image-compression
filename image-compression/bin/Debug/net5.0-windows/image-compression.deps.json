@@ -9,6 +9,11 @@
       "image-compression/1.0.0": {
         "runtime": {
           "image-compression.dll": {}
+        },
+        "resources": {
+          "tr-TR/image-compression.resources.dll": {
+            "locale": "tr-TR"
+          }
         }
       }
     }
