@@ -1,0 +1,11 @@
+C:\Users\mustafa.bulut\Desktop\exe\image-compression.pdb
+C:\Users\mustafa.bulut\Desktop\exe\clrcompression.dll
+C:\Users\mustafa.bulut\Desktop\exe\clrjit.dll
+C:\Users\mustafa.bulut\Desktop\exe\coreclr.dll
+C:\Users\mustafa.bulut\Desktop\exe\mscordaccore.dll
+C:\Users\mustafa.bulut\Desktop\exe\D3DCompiler_47_cor3.dll
+C:\Users\mustafa.bulut\Desktop\exe\PenImc_cor3.dll
+C:\Users\mustafa.bulut\Desktop\exe\PresentationNative_cor3.dll
+C:\Users\mustafa.bulut\Desktop\exe\vcruntime140_cor3.dll
+C:\Users\mustafa.bulut\Desktop\exe\wpfgfx_cor3.dll
+C:\Users\mustafa.bulut\Desktop\exe\image-compression.exe

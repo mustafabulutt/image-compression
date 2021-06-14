@@ -127,9 +127,9 @@ namespace image_compression
 								ImageCodecInfo jpgEncoder = GetEncoder(ImageFormat.Jpeg);
 								System.Drawing.Imaging.Encoder QualityEncoder = System.Drawing.Imaging.Encoder.Quality;
 								EncoderParameters myEncoderParameters = new EncoderParameters(1);
-								EncoderParameter myEncoderParameter = new EncoderParameter(QualityEncoder, quality);
+								EncoderParameter myEncoderParameter = new EncoderParameter(QualityEncoder, (quality-(i*2)));
 								myEncoderParameters.Param[0] = myEncoderParameter;
-								bmp1.Save(DestPath + i.ToString(), jpgEncoder, myEncoderParameters);
+								bmp1.Save(DestPath + "MBLT", jpgEncoder, myEncoderParameters);
 
 							}
 
@@ -138,11 +138,12 @@ namespace image_compression
 							{
 
 								File.Delete(DestPath);
-								string yol = DestPath + i.ToString();
+								string yol = DestPath + "MBLT";
+
 								FileInfo fi = new FileInfo(yol);
 								if (fi.Exists)
 								{
-									fi.MoveTo(yol.Substring(0, yol.Length - 1));
+									fi.MoveTo(yol.Substring(0, yol.Length - 4));
 								}
 
 
@@ -202,7 +203,7 @@ namespace image_compression
 
 				i++;
 				string ext = Path.GetExtension(file).ToUpper();
-				if (ext == ".PNG" || ext == ".JPG")
+				if (ext == ".PNG" || ext == ".JPG" || ext == ".JPEG")
 				{
 					CompressImage(file, textBox2.Text, 60);
 					if (i < 95)

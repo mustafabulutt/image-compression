@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MQ63b/JEtPTsEurHhaHTFFV0+2rlIOwhkpQYwvpaZxHtXMrsQgt//aOFhIK0uKhYV3YG/CFwQ8hRx4XE7a1FUw==",
+  "dgSpecHash": "e4QvvLlXEbXOuXPWVpTD6lwPZ5jrRW4Rkh6PIViRL/ZG/+QLtG+9k8TjYaIgv8zLZOlB8mFQ4YVLnJt3m5kfrw==",
   "success": true,
-  "projectFilePath": "E:\\repo\\image-compression\\image-compression\\image-compression.csproj",
+  "projectFilePath": "C:\\repo\\image-compression\\image-compression\\image-compression.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
